@@ -5,7 +5,7 @@ from . import game
 
 app = Flask(__name__)
 
-@app.route('/samo-htb/event')
+@app.route('/samo-htb/event', methods=["GET", "POST"])
 def event():
     print(request.get_json())
     ncco = [{
@@ -16,7 +16,7 @@ def event():
         }]
     return jsonify(ncco)
 
-@app.route("/samo-htb/answer")
+@app.route("/samo-htb/answer", methods=["GET", "POST"])
 def answer_call():
     ncco = [
         {
