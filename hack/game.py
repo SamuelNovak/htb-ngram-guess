@@ -43,7 +43,7 @@ def evaluate_challenge(challenge, response):
     return points[challenge["correct"].index(response)]
 
 def challenge_wording(challenge):
-    ret = "Which of the following pairs was the most common in the year {}?".format(challenge["year"])
+    ret = "Which of the following pairs was the most common in the year {}? ".format(challenge["year"])
     for i in range(len(challenge["guesses"])):
         ret += "For, {}, press {}, followed by a hash. ".format(challenge["guesses"][i], i)
     return ret
