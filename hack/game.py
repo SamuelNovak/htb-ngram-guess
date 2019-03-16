@@ -17,7 +17,8 @@ def random_bigram():
 def create_challenge():
     while True:
         ngram = random_bigram()
-        results = load_ngram_data(ngram, randint(1700, 2000))
+        year = randint(1700, 2000)
+        results = load_ngram_data(ngram, year)
         if len(results) >= 4:
             break
     results.sort(key=lambda x: x[1])
@@ -35,8 +36,14 @@ def create_challenge():
             ]
         )
 
-    return {"correct": correct, "guesses": guesses}
+    return {"correct": correct, "guesses": guesses, "year": year}
 
 def evaluate_challenge(challenge, response):
     points = (10, 5, 2, 0)
     return points[challenge["correct"].index(response)]
+
+def challenge_wording(challenge):
+    ret = "Which of the following pairs was the most common in the year {}?".format(challenge["year"])
+    for i in range(len(challenge["guesses"])):
+        ret += "For, {}, press {}, followed by a hash. ".format(challenge["guesses"][i], i)
+    return ret
