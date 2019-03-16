@@ -1,7 +1,6 @@
 import re
 import json
 from requests import request
-from bs4 import BeautifulSoup
 
 
 regex = re.compile(b"var data = (.*);")
