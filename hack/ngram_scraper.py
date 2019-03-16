@@ -14,6 +14,6 @@ def load_ngram_data(expr:str, year:int):
     if req.ok:
         raw = req.content
         data = json.loads(re.findall(regex, raw)[0])
-        return {remove_tag(i["ngram"]) : i["timeseries"][0] for i in data if "*" not in i["ngram"]}
+        return [(remove_tag(i["ngram"]), i["timeseries"][0]) for i in data if "*" not in i["ngram"]]
     else:
         return None
