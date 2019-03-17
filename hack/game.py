@@ -40,10 +40,19 @@ def create_challenge():
 
 def evaluate_challenge(challenge, response):
     points = (10, 5, 2, 0)
-    return points[challenge["correct"].index(response)]
+    index = challenge["correct"].index(response)
+    pts = points[index]
+    msg = "Your answer was {}. The correct answer was {}, followed by {}. Your picked the answer with rank of {}. You get {} points. ".format(
+        response,
+        challenge["correct"][0],
+        ", ".join([challenge["correct"][i] for i in range(1, len(challenge["correct"]))]),
+        index + 1,
+        pts)
+    return pts, msg
 
 def challenge_wording(challenge):
     ret = "Which of the following pairs was the most common in the year {}? ".format(challenge["year"])
     for i in range(len(challenge["guesses"])):
-        ret += "For, {}, press {}, followed by a hash. ".format(challenge["guesses"][i], i)
+        word = challenge["guesses"][i]
+        ret += "For, {}, repeating, {}, press {}, followed by a hash. ".format(word, word, i)
     return ret
