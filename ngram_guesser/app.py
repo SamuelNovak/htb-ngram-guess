@@ -42,27 +42,44 @@ def event():
                 }]
         else:
             challenge = players[player][0]
-            answer = challenge["guesses"][int(req["dtmf"])]
-            points, message = game.evaluate_challenge(challenge, answer)
-            players[player][1] += points
-            players[player][0] = None
-            db.save_player(dbcon, player, players[player][1])
-            ncco = [{
-                    "action": "talk",
-                    "text": message + "You now have a total of {} points.".format(players[player][1]),
-                    "voiceName": "Amy",
-                    "bargeIn": False
-                }, {
-                    "action": "talk",
-                    "text": "Press 1, followed by the hash key, to continue the game.",
-                    "voiceName": "Amy",
-                    "bargeIn": True
-                }, {
-                    "action": "input",
-                    "submitOnHash": True,
-                    "timeOut": 10
-                }]
-
+            choice = int(req["dtmf"])
+            if 0 <= choice < 4:
+                answer = challenge["guesses"][choice]
+                points, message = game.evaluate_challenge(challenge, answer)
+                players[player][1] += points
+                players[player][0] = None
+                db.save_player(dbcon, player, players[player][1])
+                ncco = [{
+                        "action": "talk",
+                        "text": message + "You now have a total of {} points.".format(players[player][1]),
+                        "voiceName": "Amy",
+                        "bargeIn": False
+                    }, {
+                        "action": "talk",
+                        "text": "Press 1, followed by the hash key, to continue the game.",
+                        "voiceName": "Amy",
+                        "bargeIn": True
+                    }, {
+                        "action": "input",
+                        "submitOnHash": True,
+                        "timeOut": 10
+                    }]
+            else:
+                ncco = [{
+                        "action": "talk",
+                        "text": "You pressed the invalid or no key. Try again.",
+                        "voiceName": "Amy",
+                        "bargeIn": False
+                    }, {
+                        "action": "talk",
+                        "text": game.challenge_wording(challenge),
+                        "voiceName": "Amy",
+                        "bargeIn": False
+                    }, {
+                        "action": "input",
+                        "submitOnHash": True,
+                        "timeOut": 10
+                    }]
         return jsonify(ncco)
     else: # TODO: Handle call end, so I can get rid of the con_uid in the dict
         return jsonify([])
