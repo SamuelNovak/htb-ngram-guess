@@ -2,7 +2,7 @@
 
 *Author: Samuel Novák* (s1865783 *at* sms *dot* ed *dot* ac *dot* uk ***:P***)
 
-(http://35.230.134.67/)[Website]
+Website: http://35.230.134.67
 
 A game where you guess which one of four given word combinations was the most commonly occuring in a specified year, according to the language corpora accessed by the [Google Books Ngram Viewer](https://books.google.com/ngrams). This game is played over the mobile network, using the the [Nexmo Voice API](https://www.nexmo.com/).
 
