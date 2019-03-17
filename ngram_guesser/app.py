@@ -119,6 +119,17 @@ def answer_call():
     ]
     return jsonify(ncco)
 
+@app.route('/api/sms', methods=['GET', 'POST'])
+def inbound_sms():
+    if request.is_json:
+        req = request.get_json()
+    elif request.method == "GET":
+        req = request.args.to_dict()
+    else:
+        req = request.form.to_dict()
+
+    return ('', 204)
+
 @app.route("/api/makecall", methods=["POST"])
 def makecall():
     if request.is_json:
@@ -133,8 +144,8 @@ def makecall():
     client = nexmo.Client(application_id=config["appid"], private_key="ngram_guesser/private.key")
     try:
         response = client.create_call({
-            'to': [{'type': 'phone', 'number': to_number}],
-            'from': {'type': 'phone', 'number': config["number"]},
+            'to': [{'type': 'mobile', 'number': to_number}],
+            'from': {'type': 'mobile', 'number': config["number"]},
             'answer_url': ['http://35.230.134.67/api/answer'],
             'answer_method': "POST",
             "event_url": ["http://35.230.134.67/api/event"],
@@ -147,8 +158,10 @@ def makecall():
 
 @app.route("/")
 def index():
+    lb = db.load_leaderboard(dbcon)
+    table = "".join(["<tr><td>{}</td><td>{}</td><td>{}</td></tr>".format(i + 1, ("*" * (len(lb) - 4)) + lb[0][-4:], lb[1]) for i in range(len(lb))])
     with open("ngram_guesser/template.html", "r") as f:
-        return f.read()
+        return f.read().replace("{placeholder}", table)
 
 def close():
     dbcon.close()

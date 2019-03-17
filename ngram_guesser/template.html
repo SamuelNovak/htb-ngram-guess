@@ -4,8 +4,26 @@
         <title>NGram Guesser</title>
     </head>
     <body>
-        <input type="text" id="number" /><br>
-        <input type="button" value="Play" id="play" />
+        <h1>Ngram Guesser</h1>
+        <p>Author: Samuel Novák (s1865783 <i>at</i> sms <i>dot</i> ed <i>dot</i> ac <i>dot</i> uk)</p>
+        <p>
+            <h3>Play the game:</h3>
+            <input type="text" id="number" /><br>
+            <input type="button" value="Play" id="play" /><br><br>
+            Or call the number yourself!
+        </p>
+
+        <p>
+            <h3>Leaderboard</h3>
+            <table>
+                <tr>
+                    <th>Rank</th>
+                    <th>Player</th>
+                    <th>Points</th>
+                </tr>
+                {placeholder}
+            </table>
+        </p>
 
 
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>

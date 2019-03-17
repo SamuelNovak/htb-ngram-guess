@@ -19,6 +19,16 @@ def load_players(conn):
         print("Warning! No database connection!")
         return {}
 
+def load_leaderboard(conn):
+    if conn != None:
+        cur = conn.cursor()
+        cur.execute("SELECT * FROM players ORDER BY points DESC;")
+        rows = cur.fetchall()
+        return rows
+    else:
+        print("Warning! No database connection!")
+        return []
+
 def load_player(conn, player):
     if conn != None:
         cur = conn.cursor()
