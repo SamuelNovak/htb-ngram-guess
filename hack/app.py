@@ -15,9 +15,9 @@ def event():
     if request.is_json:
         req = request.get_json()
     elif request.method == "GET":
-        req = {k:v for (k,v) in request.args.iteritems()}
+        req = request.args.to_dict()
     else:
-        req = {k:v for (k,v) in request.form.iteritems()}
+        req = request.form.to_dict()
     print(req)
     con_uuid = req["conversation_uuid"]
     status = req["status"]
@@ -70,9 +70,9 @@ def answer_call():
     if request.is_json:
         req = request.get_json()
     elif request.method == "GET":
-        req = {k:v for (k,v) in request.args.iteritems()}
+        req = request.args.to_dict()
     else:
-        req = {k:v for (k,v) in request.form.iteritems()}
+        req = request.form.to_dict()
     con_uuid = req["conversation_uuid"]
     caller = req["from"]
     calls[con_uuid] = caller
