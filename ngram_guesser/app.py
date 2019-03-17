@@ -130,30 +130,30 @@ def inbound_sms():
 
     return ('', 204)
 
-@app.route("/api/makecall", methods=["POST"])
-def makecall():
-    if request.is_json:
-        req = request.get_json()
-    else:
-        req = request.form.to_dict()
-    try:
-        to_number = req["to"]
-    except:
-        return "Invalid query."
+# @app.route("/api/makecall", methods=["POST"])
+# def makecall():
+#     if request.is_json:
+#         req = request.get_json()
+#     else:
+#         req = request.form.to_dict()
+#     try:
+#         to_number = req["to"]
+#     except:
+#         return "Invalid query."
 
-    client = nexmo.Client(application_id=config["appid"], private_key="ngram_guesser/private.key")
-    try:
-        response = client.create_call({
-            'to': [{'type': 'mobile', 'number': to_number}],
-            'from': {'type': 'mobile', 'number': config["number"]},
-            'answer_url': ['http://35.230.134.67/api/answer'],
-            'answer_method': "POST",
-            "event_url": ["http://35.230.134.67/api/event"],
-            "event_method": "POST"
-            })
-        return str(response)
-    except:
-        return "Error!"
+#     client = nexmo.Client(application_id=config["appid"], private_key="ngram_guesser/private.key")
+#     try:
+#         response = client.create_call({
+#             'to': [{'type': 'mobile', 'number': to_number}],
+#             'from': {'type': 'mobile', 'number': config["number"]},
+#             'answer_url': ['http://35.230.134.67/api/answer'],
+#             'answer_method': "POST",
+#             "event_url": ["http://35.230.134.67/api/event"],
+#             "event_method": "POST"
+#             })
+#         return str(response)
+#     except:
+#         return "Error!"
 
 
 @app.route("/")
