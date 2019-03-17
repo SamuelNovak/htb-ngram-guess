@@ -2,5 +2,8 @@
     "database": "DATABASE",
     "host": "HOST",
     "user": "USER",
-    "password": "PASSWORD"
+    "password": "PASSWORD",
+
+    "appid": "APPLICATION ID",
+    "number": "The app's MOBILE NUMBER"
 }

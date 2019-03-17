@@ -6,11 +6,13 @@ A game where you guess which one of four given word combinations was the most co
 
 For now, these are adjective-noun pairs, but it could easily be extended to anything that Google Ngram can handle.
 
+The game stores the number of points a player (identified by their telephone number) has.
+
 ## Technologies used
 
 * Python 3 - language of choice
 * Python Flask - web application framework
-* PostgreSQL - database
+* PostgreSQL - database for player points storage
 * Psycopg2 - PostgreSQL driver for Python
 ---
 * Google Ngram Viewer - source of the data used to generate riddles

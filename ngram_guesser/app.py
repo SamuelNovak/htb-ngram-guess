@@ -1,10 +1,14 @@
+import nexmo
 import json
 from flask import Flask, jsonify, request
 
 from . import game, db
 
+with open("ngram_guesser/config.json") as f:
+    config = json.loads(f.read())
+
 app = Flask(__name__)
-dbcon = db.connect()
+dbcon = db.connect(config)
 
 # players = {"NUMBER": ["CHALLENGE=None", "POINTS=0"]}
 players = {}
@@ -114,6 +118,37 @@ def answer_call():
         }
     ]
     return jsonify(ncco)
+
+@app.route("/api/makecall", methods=["POST"])
+def makecall():
+    if request.is_json:
+        req = request.get_json()
+    else:
+        req = request.form.to_dict()
+    try:
+        to_number = req["to"]
+    except:
+        return "Invalid query."
+
+    client = nexmo.Client(application_id=config["appid"], private_key="ngram_guesser/private.key")
+    try:
+        response = client.create_call({
+            'to': [{'type': 'phone', 'number': to_number}],
+            'from': {'type': 'phone', 'number': config["number"]},
+            'answer_url': ['http://35.230.134.67/api/answer'],
+            'answer_method': "POST",
+            "event_url": ["http://35.230.134.67/api/event"],
+            "event_method": "POST"
+            })
+        return str(response)
+    except:
+        return "Error!"
+
+
+@app.route("/")
+def index():
+    with open("ngram_guesser/template.html", "r") as f:
+        return f.read()
 
 def close():
     dbcon.close()

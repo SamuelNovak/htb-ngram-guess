@@ -1,9 +1,7 @@
 import psycopg2
 import json
 
-def connect():
-    with open("ngram_guesser/config.json") as f:
-        config = json.loads(f.read())
+def connect(config):
     try:
         return psycopg2.connect("dbname='{database}' user='{user}' host='{host}' password='{password}'".format_map(config))
     except:

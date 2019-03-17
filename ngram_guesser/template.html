@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>NGram Guesser</title>
+    </head>
+    <body>
+        <input type="text" id="number" /><br>
+        <input type="button" value="Play" id="play" />
+
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script>
+            $("#play").click(function() {
+                $.post({
+                    url: "/api/makecall",
+                    data: JSON.stringify({to: $("#number").val()}),
+                    contentType: "application/json",
+                    dataType: "json"
+                });
+            });
+        </script>
+    </body>
+</html>
