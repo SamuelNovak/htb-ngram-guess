@@ -5,7 +5,7 @@ from . import game
 
 app = Flask(__name__)
 
-# players = {"NUMBER": ("CHALLENGE=None", "POINTS=0")}
+# players = {"NUMBER": ["CHALLENGE=None", "POINTS=0"]}
 players = {}
 # calls = {"CON_UUID": "NUMBER"}
 calls = {}
@@ -25,7 +25,7 @@ def event():
     if "dtmf" in req:
         player = calls[con_uuid]
         if not player in players:
-            players[player] = (None, 0)
+            players[player] = [None, 0]
 
         if players[player][0] == None: # new challenge
             players[player][0] = game.create_challenge()
