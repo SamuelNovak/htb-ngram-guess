@@ -1,17 +1,17 @@
 from .ngram_scraper import load_ngram_data
 from random import choice, randint
 
-with open("ngram_guesser/words.txt") as f:
+with open("ngram_guesser/words.txt", "r") as f:
     WORDS = [l.strip() for l in f.readlines()]
 
-# with open("ngram_guesser/tags.txt") as f:
+# with open("ngram_guesser/tags.txt", "r") as f:
 #     TAGS = [l.strip() for l in f.readlines()]
 
 def random_bigram():
     word = choice(WORDS)
     tag = "*_ADJ"
     # ordering
-    ## !! NOPE: for now always *_ADJ word
+    ## !! NOPE: for now always "*_ADJ noun"
     return tag + " " + word
 
 def create_challenge():
