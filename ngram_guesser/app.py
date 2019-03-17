@@ -159,7 +159,7 @@ def makecall():
 @app.route("/")
 def index():
     lb = db.load_leaderboard(dbcon)
-    table = "".join(["<tr><td>{}</td><td>{}</td><td>{}</td></tr>".format(i + 1, ("*" * (len(lb[i]) - 4)) + lb[i][0][-4:], str(lb[i][1])) for i in range(len(lb))])
+    table = "".join(["<tr><td>{}</td><td>{}</td><td>{}</td></tr>".format(i + 1, ("*" * (len(lb[i][0]) - 4)) + lb[i][0][-4:], str(lb[i][1])) for i in range(len(lb))])
     with open("ngram_guesser/template.html", "r") as f:
         return f.read().replace("{placeholder}", table)
 
