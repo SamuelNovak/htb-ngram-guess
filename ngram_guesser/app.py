@@ -10,7 +10,7 @@ players = {}
 # calls = {"CON_UUID": "NUMBER"}
 calls = {}
 
-@app.route('/samo-htb/event', methods=["GET", "POST"])
+@app.route('/api/event', methods=["GET", "POST"])
 def event():
     if request.is_json:
         req = request.get_json()
@@ -20,7 +20,6 @@ def event():
         req = request.form.to_dict()
     print(req)
     con_uuid = req["conversation_uuid"]
-    # status = req["status"]
 
     if "dtmf" in req:
         player = calls[con_uuid]
@@ -66,7 +65,7 @@ def event():
     else:
         return jsonify([])
 
-@app.route("/samo-htb/answer", methods=["GET", "POST"])
+@app.route("/api/answer", methods=["GET", "POST"])
 def answer_call():
     if request.is_json:
         req = request.get_json()
@@ -80,15 +79,8 @@ def answer_call():
 
     ncco = [
         {
-        #     "action": "connect",
-        #     "from": "NEXMO_NUMBER",
-        #     "endpoint": [{
-        #         "type": 'mobile',
-        #         "number": "__"
-        #     }]
-        # }, {
             "action": "talk",
-            "text": "Welcome to the N gram guesser game. The point of the game is to guess which word combination was the most common is a specified year. Enjoy!",
+            "text": "Welcome to the bigram guesser game. The point of the game is to guess which word combination was the most common is a specified year. Enjoy!",
             "voiceName": "Amy",
             "bargeIn": False
         }, {
