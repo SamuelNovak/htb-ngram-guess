@@ -41,7 +41,7 @@ def event():
                 }]
         else:
             challenge = players[player][0]
-            answer = challenge["guesses"][req["dtmf"]]
+            answer = challenge["guesses"][int(req["dtmf"])]
             points, message = game.evaluate_challenge(challenge, answer)
             players[player][1] += points
             players[player][0] = None
