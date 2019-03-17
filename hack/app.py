@@ -15,7 +15,7 @@ def event():
     if request.is_json:
         req = request.get_json()
     else:
-        req = {k:v for (k,v) in request.iteritems()}
+        req = {k:v for (k,v) in request.args.iteritems()}
     print(req)
     con_uuid = req["conversation_uuid"]
     status = req["status"]
@@ -68,7 +68,7 @@ def answer_call():
     if request.is_json:
         req = request.get_json()
     else:
-        req = {k:v for (k,v) in request.iteritems()}
+        req = {k:v for (k,v) in request.args.iteritems()}
     con_uuid = req["conversation_uuid"]
     caller = req["from"]
     calls[con_uuid] = caller
