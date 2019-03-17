@@ -28,7 +28,7 @@ def load_player(conn, player):
         rows = cur.fetchall()
         print(rows)
         if len(rows) == 1:
-            return [None, rows[0][2]]
+            return [None, rows[0][1]]
         else:
             return [None, 0]
     else:
