@@ -28,10 +28,11 @@ def event():
             players[player] = [None, 0]
 
         if players[player][0] == None: # new challenge
-            players[player][0] = game.create_challenge()
+            challenge = game.create_challenge()
+            players[player][0] = challenge
             ncco = [{
                     "action": "talk",
-                    "text": game.challenge_wording(game.create_challenge()),
+                    "text": game.challenge_wording(challenge),
                     "voiceName": "Amy",
                     "bargeIn": False
                 }, {
@@ -52,7 +53,7 @@ def event():
                     "bargeIn": False
                 }, {
                     "action": "talk",
-                    "text": "Press 1, to continue the game, followed by the hash key.",
+                    "text": "Press 1, followed by the hash key, to continue the game.",
                     "voiceName": "Amy",
                     "bargeIn": True
                 }, {
