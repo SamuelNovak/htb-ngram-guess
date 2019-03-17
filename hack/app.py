@@ -20,13 +20,13 @@ def event():
 def answer_call():
     ncco = [
         {
-            "action": "connect",
-            "from": "NEXMO_NUMBER",
-            "endpoint": [{
-                "type": 'mobile',
-                "number": "__"
-            }]
-        }, {
+        #     "action": "connect",
+        #     "from": "NEXMO_NUMBER",
+        #     "endpoint": [{
+        #         "type": 'mobile',
+        #         "number": "__"
+        #     }]
+        # }, {
             "action": "talk",
             "text": "Welcome to the N gram guesser game. The point of the game is to guess which word combination was the most common is a specified year. Enjoy!",
             "voiceName": "Amy",
