@@ -7,15 +7,18 @@ app = Flask(__name__)
 
 # players = {"NUMBER": ("CHALLENGE=None", "POINTS=0")}
 players = {}
+# calls = {"CON_UUID": "NUMBER"}
+calls = {}
 
 @app.route('/samo-htb/event', methods=["GET", "POST"])
 def event():
     req = request.get_json()
     print(req)
-    player = req["from"]
+    con_uuid = req["conversation_uuid"]
     status = req["status"]
 
     if status == "input":
+        player = calls[con_uuid]
         if not player in players:
             players[player] = (None, 0)
 
@@ -54,9 +57,16 @@ def event():
                 }]
 
         return jsonify(ncco)
+    else:
+        return jsonify([])
 
 @app.route("/samo-htb/answer", methods=["GET", "POST"])
 def answer_call():
+    req = request.get_json()
+    con_uuid = req["conversation_uuid"]
+    caller = req["from"]
+    calls[con_uuid] = caller
+
     ncco = [
         {
         #     "action": "connect",
