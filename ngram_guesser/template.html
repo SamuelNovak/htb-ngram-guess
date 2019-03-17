@@ -5,7 +5,30 @@
     </head>
     <body>
         <h1>Ngram Guesser</h1>
-        <p>Author: Samuel Novák (s1865783 <i>at</i> sms <i>dot</i> ed <i>dot</i> ac <i>dot</i> uk)</p>
+        <p>Author: Samuel Novák (s1865783 <i>at</i> sms <i>dot</i> ed <i>dot</i> ac <i>dot</i> uk)<br>
+        To see the source, look into my <a href="https://github.com/Superbee29/htb-ngram-guess">GitHub repository</a>.</p>
+        <p>
+        A game where you guess which one of four given word combinations was the most commonly occuring in a specified year, according to the language corpora accessed by the <a href="https://books.google.com/ngrams">Google Books Ngram Viewer</a>. This game is played over the mobile network, using the the <a href="https://www.nexmo.com/">Nexmo Voice API</a>.<br>
+        For now, these are adjective-noun pairs, but it could easily be extended to anything that Google Ngram can handle.<br>
+        The game stores the number of points a player (identified by their telephone number) has in a PostgreSQL database and also has a leaderboard accessible on the website.</p>
+        <p>
+            <h2>How to play</h2>
+            Simply call the number <b><u>+44 752 063 5242</u></b> and follow the instructions ;)
+        </p>
+        <p>
+            <h3>Technologies used</h3>
+            <ul>
+                <li>Python 3 - language of choice</li>
+                <li>Python Flask - web application framework</li>
+                <li>PostgreSQL - database for player points storage</li>
+                <li>Psycopg2 - PostgreSQL driver for Python</li>
+                <li>HTML + JS - simple web frontend with leaderboard</li>
+                <hr/>
+                <li>Google Ngram Viewer - source of the data used to generate riddles</li>
+                <li>Nexmo Voice API - mobile network communication</li>
+                <li>Google Cloud Compute Engine - backend server</li>
+            </ul>
+        </p>
         <!--<p>
             <h3>Play the game:</h3>
             <input type="text" id="number" /><br>
