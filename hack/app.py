@@ -12,7 +12,10 @@ calls = {}
 
 @app.route('/samo-htb/event', methods=["GET", "POST"])
 def event():
-    req = request.get_json()
+    if request.is_json:
+        req = request.get_json()
+    else:
+        req = {k:v for (k,v) in request.iteritems()}
     print(req)
     con_uuid = req["conversation_uuid"]
     status = req["status"]
@@ -62,7 +65,10 @@ def event():
 
 @app.route("/samo-htb/answer", methods=["GET", "POST"])
 def answer_call():
-    req = request.get_json()
+    if request.is_json:
+        req = request.get_json()
+    else:
+        req = {k:v for (k,v) in request.iteritems()}
     con_uuid = req["conversation_uuid"]
     caller = req["from"]
     calls[con_uuid] = caller
