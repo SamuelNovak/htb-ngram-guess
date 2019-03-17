@@ -1,11 +1,11 @@
 from .ngram_scraper import load_ngram_data
 from random import choice, randint
 
-with open("hack/words.txt") as f:
+with open("ngram_guesser/words.txt") as f:
     WORDS = [l.strip() for l in f.readlines()]
 
-with open("hack/tags.txt") as f:
-    TAGS = [l.strip() for l in f.readlines()]
+# with open("ngram_guesser/tags.txt") as f:
+#     TAGS = [l.strip() for l in f.readlines()]
 
 def random_bigram():
     word = choice(WORDS)
