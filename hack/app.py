@@ -20,9 +20,9 @@ def event():
         req = request.form.to_dict()
     print(req)
     con_uuid = req["conversation_uuid"]
-    status = req["status"]
+    # status = req["status"]
 
-    if status == "input":
+    if "dtmf" in req:
         player = calls[con_uuid]
         if not player in players:
             players[player] = (None, 0)
