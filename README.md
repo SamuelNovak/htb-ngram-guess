@@ -1,8 +1,6 @@
 # N-gram guesser
 
-*Author: Samuel Novák* (s1865783 *at* sms *dot* ed *dot* ac *dot* uk ***:P***)
-
-Website: http://35.230.134.67
+*Solo project from Hack The Burgh V (2019)*
 
 A game where you guess which one of four given word combinations was the most commonly occuring in a specified year, according to the language corpora accessed by the [Google Books Ngram Viewer](https://books.google.com/ngrams). This game is played over the mobile network, using the the [Nexmo Voice API](https://www.nexmo.com/).
 
@@ -12,7 +10,8 @@ The game stores the number of points a player (identified by their telephone num
 
 ## How to play
 
-Simply call the number **+44 752 063 5242** and follow the instructions ;)
+Simply call the number and follow the instructions ;)
+*Note: The game is not currently running.*
 
 ## Technologies used
 
