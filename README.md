@@ -11,6 +11,7 @@ The game stores the number of points a player (identified by their telephone num
 ## How to play
 
 Simply call the number and follow the instructions ;)
+
 *Note: The game is not currently running.*
 
 ## Technologies used
